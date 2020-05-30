@@ -2,21 +2,18 @@ package com.example.language;
 
 import androidx.appcompat.app.AppCompatActivity;
 
-
 import android.content.res.Configuration;
 import android.os.Bundle;
 import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
-import android.widget.Toast;
 
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     int choosePosition;
-
 
 
     @Override
@@ -28,8 +25,7 @@ public class MainActivity extends AppCompatActivity {
     }
 
 
-
-    private void init(){
+    private void init() {
 
         final Spinner spinner = findViewById(R.id.spinner);
         ArrayAdapter<?> adapter =
@@ -43,11 +39,8 @@ public class MainActivity extends AppCompatActivity {
                                        View itemSelected, int selectedItemPosition, long selectedId) {
 
                 choosePosition = selectedItemPosition;
-                Toast toast = Toast.makeText(getApplicationContext(),
-                        "Выбрано: " + choosePosition, Toast.LENGTH_SHORT);
-                toast.show();
-
             }
+
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
@@ -58,21 +51,29 @@ public class MainActivity extends AppCompatActivity {
             public void onClick(View v) {
 
 
-            if (choosePosition == 1){
+         /*   if (choosePosition == 1){
                 switchLocale("ru");
             } else {
                 switchLocale("en");
-            }
+            }*/
+
+                switch (choosePosition) {
+                    case 1:
+                        switchLocale("ru");
+                        break;
+                    default:
+                        switchLocale("en");
+
+                }
             }
         });
     }
 
-    private void switchLocale(String language){
+    private void switchLocale(String language) {
         Locale locale = new Locale(language);
         Configuration config = new Configuration();
         config.setLocale(locale);
         getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
         recreate();
     }
-
 }
