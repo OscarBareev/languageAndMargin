@@ -2,7 +2,7 @@
     <string name="app_name">language</string>
     <string name="ok">Океюшки</string>
     <string name="hello">Привет! Как дела?</string>
-    <string name="choose_color">Выберете цвет</string>
+
     <string name="choose_language">Выберете язык</string>
     <string name="choose_margin">Выберете отсупы</string>
 
@@ -11,11 +11,10 @@
         <item>Русский</item>
     </string-array>
 
-    <string-array name="colors">
-        <item>Зеленый</item>
-        <item>Синий</item>
-        <item>Черный</item>
+    <string-array name="margin">
+        <item>Маленькие</item>
+        <item>Средние</item>
+        <item>Большие</item>
     </string-array>
-
 
 </resources>

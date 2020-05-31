@@ -50,12 +50,12 @@
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="17dp"
-        android:text="@string/choose_color"
-        app:layout_constraintStart_toStartOf="@+id/colorSpin"
+        android:text="@string/choose_margin"
+        app:layout_constraintStart_toStartOf="@+id/marginSpin"
         app:layout_constraintTop_toBottomOf="@+id/languageSpin" />
 
     <Spinner
-        android:id="@+id/colorSpin"
+        android:id="@+id/marginSpin"
         android:layout_width="0dp"
         android:layout_height="wrap_content"
         android:layout_marginStart="1dp"

@@ -9,12 +9,13 @@ import android.widget.AdapterView;
 import android.widget.ArrayAdapter;
 import android.widget.Spinner;
 
+import java.io.UTFDataFormatException;
 import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
     int chooseLanguagePos;
-    int chooseColorPos;
+    int chooseMarginPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
@@ -29,7 +30,7 @@ public class MainActivity extends AppCompatActivity {
     private void init() {
 
         final Spinner languageSpin = findViewById(R.id.languageSpin);
-        final Spinner colorSpin = findViewById(R.id.colorSpin);
+        final Spinner marginSpin = findViewById(R.id.marginSpin);
 
 
         ArrayAdapter<?> langAdapter =
@@ -49,22 +50,25 @@ public class MainActivity extends AppCompatActivity {
             }
         });
 
-        ArrayAdapter<?> colorAdapter =
-                ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
-        langAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        colorSpin.setAdapter(colorAdapter);
+        ArrayAdapter<?> marginAdapter =
+                ArrayAdapter.createFromResource(this, R.array.margin, android.R.layout.simple_spinner_item);
+        marginAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        colorSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        marginSpin.setAdapter(marginAdapter);
+
+        marginSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent,
                                        View itemSelected, int selectedItemPosition, long selectedId) {
 
-                chooseColorPos = selectedItemPosition;
+                chooseMarginPos = selectedItemPosition;
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
             }
         });
+
+
 
 
 
@@ -84,18 +88,19 @@ public class MainActivity extends AppCompatActivity {
 
                 }
 
-                switch (chooseColorPos){
+                switch (chooseMarginPos){
                     case 0:
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_GREEN);
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_LITTLE);
                         break;
                     case 1:
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLUE);
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_MIDDLE);
                         break;
                     case 2:
-                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLACK);
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BIG);
                         break;
-
                 }
+
+
 
 
 

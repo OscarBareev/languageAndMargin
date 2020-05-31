@@ -2,7 +2,7 @@
     <string name="app_name">language</string>
     <string name="ok">OK</string>
     <string name="hello">Hello! How are you?</string>
-    <string name="choose_color">Choose color</string>
+    <string name="choose_margin">Choose margin</string>
     <string name="choose_language">Choose language</string>
 
     <string-array name="languages">
@@ -10,10 +10,10 @@
         <item>Russian</item>
     </string-array>
 
-    <string-array name="colors">
-        <item>Green</item>
-        <item>Blue</item>
-        <item>Black</item>
+    <string-array name="margin">
+        <item>Little</item>
+        <item>Middle</item>
+        <item>Big</item>
     </string-array>
 
 
