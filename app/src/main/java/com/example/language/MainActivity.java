@@ -13,12 +13,13 @@ import java.util.Locale;
 
 public class MainActivity extends AppCompatActivity {
 
-    int choosePosition;
-
+    int chooseLanguagePos;
+    int chooseColorPos;
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        Utils.onActivityCreateSetTheme(this);
         setContentView(R.layout.activity_main);
 
         init();
@@ -27,18 +28,38 @@ public class MainActivity extends AppCompatActivity {
 
     private void init() {
 
-        final Spinner spinner = findViewById(R.id.spinner);
-        ArrayAdapter<?> adapter =
+        final Spinner languageSpin = findViewById(R.id.languageSpin);
+        final Spinner colorSpin = findViewById(R.id.colorSpin);
+
+
+        ArrayAdapter<?> langAdapter =
                 ArrayAdapter.createFromResource(this, R.array.languages, android.R.layout.simple_spinner_item);
-        adapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+        langAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
 
-        spinner.setAdapter(adapter);
+        languageSpin.setAdapter(langAdapter);
 
-        spinner.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+        languageSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
             public void onItemSelected(AdapterView<?> parent,
                                        View itemSelected, int selectedItemPosition, long selectedId) {
 
-                choosePosition = selectedItemPosition;
+                chooseLanguagePos = selectedItemPosition;
+            }
+
+            public void onNothingSelected(AdapterView<?> parent) {
+            }
+        });
+
+        ArrayAdapter<?> colorAdapter =
+                ArrayAdapter.createFromResource(this, R.array.colors, android.R.layout.simple_spinner_item);
+        langAdapter.setDropDownViewResource(android.R.layout.simple_spinner_dropdown_item);
+
+        colorSpin.setAdapter(colorAdapter);
+
+        colorSpin.setOnItemSelectedListener(new AdapterView.OnItemSelectedListener() {
+            public void onItemSelected(AdapterView<?> parent,
+                                       View itemSelected, int selectedItemPosition, long selectedId) {
+
+                chooseColorPos = selectedItemPosition;
             }
 
             public void onNothingSelected(AdapterView<?> parent) {
@@ -46,18 +67,15 @@ public class MainActivity extends AppCompatActivity {
         });
 
 
+
+
         findViewById(R.id.button).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
 
 
-         /*   if (choosePosition == 1){
-                switchLocale("ru");
-            } else {
-                switchLocale("en");
-            }*/
 
-                switch (choosePosition) {
+                switch (chooseLanguagePos) {
                     case 1:
                         switchLocale("ru");
                         break;
@@ -65,15 +83,37 @@ public class MainActivity extends AppCompatActivity {
                         switchLocale("en");
 
                 }
+
+                switch (chooseColorPos){
+                    case 0:
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_GREEN);
+                        break;
+                    case 1:
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLUE);
+                        break;
+                    case 2:
+                        Utils.changeToTheme(MainActivity.this, Utils.THEME_BLACK);
+                        break;
+
+                }
+
+
+
+
+
             }
         });
     }
+
+
+
+
 
     private void switchLocale(String language) {
         Locale locale = new Locale(language);
         Configuration config = new Configuration();
         config.setLocale(locale);
         getResources().updateConfiguration(config, getBaseContext().getResources().getDisplayMetrics());
-        recreate();
+
     }
 }
